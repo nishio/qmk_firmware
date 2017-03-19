@@ -2,6 +2,7 @@
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
+#include "process_unicode.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
@@ -11,7 +12,7 @@ enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
   VRSN,
-  RGB_SLD,
+  TEST,
   TMUX_LAST,
   EMACS_DABBREV
 };
@@ -48,7 +49,7 @@ KC_ESC,  KC_1,  KC_2,   KC_3,   KC_4,   KC_5,   KC_6,
 KC_TAB,  KC_Q,  KC_W,   KC_E,   KC_R,   KC_T,   KC_NO,
 KC_LCTL, KC_A,  KC_S,   KC_D,   KC_F,   KC_G,
 KC_LSFT, KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   KC_NO,
-KC_NO,   KC_NO, KC_NO,  KC_NO,  KC_NO,
+TG(1),   TEST, KC_NO,  KC_NO,  KC_NO,
 
 KC_NO,  KC_NO,
 /* */   KC_LALT,
@@ -170,11 +171,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case RGB_SLD:
+
+    case TEST:
       if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_mode(1);
-        #endif
+        SEND_STRING ("UNICODE TEST");
+        set_unicode_input_mode(UC_WINC);
+
+        // my name: u'\u897f\u5c3e\u6cf0\u548c'
+        unicode_input_start();
+        register_hex(0x897f);
+        unicode_input_finish();
+        SEND_STRING (" ");
+
+        unicode_input_start();
+        register_hex(0x5c3e);
+        unicode_input_finish();
+        SEND_STRING (" ");
+
+        unicode_input_start();
+        register_hex(0x6cf0);
+        unicode_input_finish();
+        //SEND_STRING (" ");
+
+        unicode_input_start();
+        register_hex(0x548c);  // fails
+        unicode_input_finish();
+        SEND_STRING (" ");
       }
       return false;
       break;
