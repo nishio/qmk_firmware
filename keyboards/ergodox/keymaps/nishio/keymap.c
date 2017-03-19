@@ -12,8 +12,10 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD,
-  TMUX_LAST
+  TMUX_LAST,
+  EMACS_DABBREV
 };
+#define DAB EMACS_DABBREV
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
@@ -54,7 +56,7 @@ SFT_T(KC_SPC),KC_LCTL,KC_LGUI,
 
 // right hand
 KC_7,     KC_8,   KC_9,  KC_0,   KC_MINUS, KC_EQL,  KC_BSPACE,
-KC_NO,    KC_Y,   KC_U,  KC_I,   KC_O,     KC_P,    KC_BSLS,
+DAB,      KC_Y,   KC_U,  KC_I,   KC_O,     KC_P,    KC_BSLS,
 /* */     KC_H,   KC_J,  KC_K,   KC_L,     KC_QUOT, KC_ENTER,
 KC_NO,    KC_N,   KC_M,  KC_COMM,KC_DOT,   KC_SCLN, KC_SLSH,
 /*         */  KC_LBRC,  KC_RBRC,KC_GRAVE, KC_NO,   KC_NO,
@@ -186,6 +188,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_LCTL);
         register_code(KC_L);
         unregister_code(KC_L);
+      }
+
+      return false;
+      break;
+
+    case EMACS_DABBREV:
+      // Esc /
+      if (record->event.pressed) {
+        register_code(KC_ESC);
+        unregister_code(KC_ESC);
+        register_code(KC_SLSH);
+        unregister_code(KC_SLSH);
       }
 
       return false;
