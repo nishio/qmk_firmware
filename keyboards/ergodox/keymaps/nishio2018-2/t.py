@@ -35,7 +35,7 @@ ki gi no
 i po xyo
 nn ? xtu
 
-? xtu ?
+? xu ?
 hi - bi
 su ro zu
 fu ya bu

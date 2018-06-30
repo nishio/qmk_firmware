@@ -195,7 +195,7 @@ const macro_to_sequence_t macro_to_sequence[] = {
 /*M(27): ki gi no    */ {.base={KC_K, KC_I}, .lshift={KC_G, KC_I}, .rshift={KC_N, KC_O}},
 /*M(28): i po xyo    */ {.base={KC_I}, .lshift={KC_P, KC_O}, .rshift={KC_X, KC_Y, KC_O}},
 /*M(29): nn ? xtu    */ {.base={KC_N, KC_N}, .lshift={KC_NO, 24}, .rshift={KC_X, KC_T, KC_U}},
-/*M(30): ? xtu ?     */ {.base={KC_NO, 25}, .lshift={KC_X, KC_T, KC_U}, .rshift={KC_NO, 26}},
+/*M(30): ? xu ?     */ {.base={KC_NO, 25}, .lshift={KC_X, KC_U}, .rshift={KC_NO, 26}},
 /*M(31): hi - bi     */ {.base={KC_H, KC_I}, .lshift={KC_MINUS}, .rshift={KC_B, KC_I}},
 /*M(32): su ro zu    */ {.base={KC_S, KC_U}, .lshift={KC_R, KC_O}, .rshift={KC_Z, KC_U}},
 /*M(33): fu ya bu    */ {.base={KC_F, KC_U}, .lshift={KC_Y, KC_A}, .rshift={KC_B, KC_U}},
